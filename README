@@ -1,0 +1,24 @@
+The Row reordering C++ library -- External memory version
+Daniel Lemire
+
+
+== Requirements ==
+
+LZO2 library: http://www.oberhumer.com/opensource/lzo/
+Readily available on Linux. Available on macos through fink (for example).
+
+There can be significant differences in compression rate between even minor
+revisions of the LZO library. When comparing results, always make sure you have
+the exact same version.
+
+
+
+The GNU GCC toolchain is obviously required. C++ code should be portable though.
+
+== Usage ==
+
+make tods2011
+./tods2011 myfile.csv
+
+
+
