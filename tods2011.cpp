@@ -7,7 +7,7 @@
 #include <string>
 #include <getopt.h>
 #include <string.h>
-#include <tr1/memory>
+#include <memory>
 
 #include "externalvector.h"
 

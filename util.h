@@ -283,7 +283,6 @@ template <class iterator>
 uint64 danielrlecostrandomaccess(const iterator & begin, const iterator & end) {
     int mbits = maxbits(begin,end);
     //const uint costofarun=2*32;
-    int logn=bits(end-begin);
     int bestL =32;
     uint64 bestCost = bestL*(end-begin);
     iterator lastexception = begin;
@@ -317,8 +316,6 @@ uint64 danielrlecostrandomaccess(const iterator & begin, const iterator & end) {
 template <class iterator>
 uint64 danielrlecostmodulorandomaccess(const iterator & begin, const iterator & end) {
     int mbits = maxbits(begin,end);
-    //const uint costofarun=2*32;
-    int logn=bits(end-begin);
     int bestL =32;
     uint64 bestCost = bestL*(end-begin);
     iterator lastexception = begin;
@@ -350,7 +347,6 @@ uint64 danielrlecostmodulorandomaccess(const iterator & begin, const iterator & 
 template <class iterator>
 uint64 danielrlecostmodulo2randomaccess(const iterator & begin, const iterator & end) {
     int mbits = maxbits(begin,end);
-    int logn=bits(end-begin);
     int bestL =32;
     uint64 bestCost = bestL*(end-begin);
     iterator lastexception = begin;

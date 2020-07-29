@@ -12,11 +12,10 @@
 #include <vector>
 #include <set>
 #include <map>
-#include <tr1/unordered_map>
+#include <unordered_map>
 #include "util.h"
 
 using namespace std;
-using namespace std::tr1;
 
 
 

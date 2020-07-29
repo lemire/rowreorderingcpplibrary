@@ -8,16 +8,7 @@ For a simple demo (in Java) of the Vortex order described in the paper, please s
 
 # Requirements 
 
-LZO2 library: http://www.oberhumer.com/opensource/lzo/
-Readily available on Linux. Available on macos through fink (for example).
-
-There can be significant differences in compression rate between even minor
-revisions of the LZO library. When comparing results, always make sure you have
-the exact same version.
-
-
-
-The GNU GCC toolchain is obviously required. C++ code should be portable though.
+A POSIX C/C++ toolchain (linux, macOS)
 
 # Usage 
 

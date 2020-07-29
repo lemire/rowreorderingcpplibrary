@@ -38,11 +38,10 @@
 #ifndef BOOST_ARRAY_HPP
 #define BOOST_ARRAY_HPP
 
-
 #include <sstream>
 #include <algorithm>
 #include <string.h>
-
+namespace lazyboost {
 template<class T, std::size_t N>
 class array {
 public:
@@ -189,5 +188,5 @@ ostream& operator<<(ostream & out, const array<T,c> & a) {
 	return out<< a.str();
 }
 
-
+}
 #endif /*BOOST_ARRAY_HPP*/

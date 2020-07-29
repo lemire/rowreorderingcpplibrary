@@ -9,12 +9,11 @@
 #include <fstream>
 
 #include <unistd.h>
-#include <tr1/unordered_set>
+#include <unordered_set>
 #include "externalvector.h"
 #include "stxxlrowreordering.h"
 
 using namespace std;
-using namespace std::tr1;
 
 typedef unsigned long long uint64;
 #include "array.h"
@@ -41,7 +40,7 @@ public:
 		mIndexes = v.mIndexes;
 		return *this;
 	}
-	bool operator ()(const array<uint, c> & a, const array<uint, c> & b) const {
+	bool operator ()(const lazyboost::array<uint, c> & a, const lazyboost::array<uint, c> & b) const {
 		for (vector<uint>::const_iterator i = mIndexes.begin(); i
 				!= mIndexes.end(); ++i) {
 			uint k = *i;
@@ -71,13 +70,13 @@ public:
 	}
 
 	void top(const uint number, RowStore<c> & o) const {
-		externalvector<array<uint, c> > newdata = data.top(number);
+		externalvector<lazyboost::array<uint, c> > newdata = data.top(number);
 		o.data.swap(newdata);
 	}
 
 
 	void fillWithSample(const uint number, RowStore<c> & o) {
-		externalvector<array<uint, c> > newdata = data.buildSample(number);
+		externalvector<lazyboost::array<uint, c> > newdata = data.buildSample(number);
 		o.data.swap(newdata);
 	}
 
@@ -93,8 +92,8 @@ public:
 		if(parameters::verbose) cout<<"opening data"<<endl;
 		data.open();
 		if(parameters::verbose) cout<<"opening data:ok"<<endl;
-		array<int, c> cont;
-		array<uint, c> rowbuffer;
+		lazyboost::array<int, c> cont;
+		lazyboost::array<uint, c> rowbuffer;
 		if(parameters::verboseMem) printMemoryUsage();
 		if(maxnumberofrows>0) {
 			uint nbrrows = 0;
@@ -145,16 +144,16 @@ public:
 				<< endl;
 		if (data.size() == 0)
 			return;//no data
-		vector<array<uint,c> > buffer;
+		vector<lazyboost::array<uint,c> > buffer;
 		for (uint64 k = 0; k < data.size(); k += BLOCKSIZE) {
 			if (k + BLOCKSIZE < data.size()) {
 				data.loadACopy(buffer,k,k+BLOCKSIZE);
-				MultipleListsSort<vector<array<uint,c> > > (
+				MultipleListsSort<vector<lazyboost::array<uint,c> > > (
 						buffer.begin(), buffer.end(), indexes);
 				data.copyAt(buffer,k);
 			} else {
 				data.loadACopy(buffer,k,data.size());
-				MultipleListsSort<vector<array<uint,c> > > (
+				MultipleListsSort<vector<lazyboost::array<uint,c> > > (
 						buffer.begin(), buffer.end(), indexes);
 				data.copyAt(buffer,k);
 			}
@@ -165,7 +164,7 @@ public:
 	}
 
 	void printFirstRows(const uint n) {
-		vector<array<uint, c> > buffer;
+		vector<lazyboost::array<uint, c> > buffer;
 		data.loadACopy(buffer,0, n);
 		for (uint k = 0; k < n; ++k) {
 			cout<<buffer[k]<<endl;
@@ -173,7 +172,7 @@ public:
 	}
 
 	uint64 countZeroes(const uint BLOCKSIZE = externalvector<uint>::DEFAULTBLOCKSIZE) {
-		vector<array<uint, c> > buffer;
+		vector<lazyboost::array<uint, c> > buffer;
 		uint64 sum = 0;
 		for (uint64 k = 0; k < data.size(); k += BLOCKSIZE) {
 			if (k + BLOCKSIZE < data.size()) {
@@ -181,7 +180,7 @@ public:
 			} else {
 				data.loadACopy(buffer,k,data.size());
 			}
-			for(typename vector<array<uint, c> >::iterator i = buffer.begin(); i!= buffer.end(); ++i) {
+			for(typename vector<lazyboost::array<uint, c> >::iterator i = buffer.begin(); i!= buffer.end(); ++i) {
 				for(uint k = 0; k<c;++k)
 					if((*i)[k]==0) {
 						sum++;
@@ -191,7 +190,7 @@ public:
 		return sum;
 	}
 
-	externalvector<array<uint, c> > data;
+	externalvector<lazyboost::array<uint, c> > data;
 };
 
 template<int c> // number of columns
@@ -270,7 +269,7 @@ public:
 		rs.data.close();
 		rs.data.open();
 		vector<vector<uint> > buffer(MAPSIZE);
-		array<uint, c> rowbuffer;
+		lazyboost::array<uint, c> rowbuffer;
 		uint64 nr = numberOfRows();
 		for(uint64 begin = 0; begin<nr; begin+=MAPSIZE) {
 			uint64 end = begin+ MAPSIZE;
@@ -300,7 +299,7 @@ public:
 		}
 		const uint64 MAPSIZE = getpagesize() * 2048; // appears to default at 1024// 16777216;
 
-		vector<array<uint, c> > buffer;
+		vector<lazyboost::array<uint, c> > buffer;
 		if ((maxsize == 0) or (maxsize >= rs.data.size())) {
 
 			for (uint64 rowindex = 0; rowindex < rs.data.size(); rowindex
@@ -311,7 +310,7 @@ public:
 						begin + MAPSIZE > rs.data.size() ? rs.data.size()
 								: begin + MAPSIZE);
 				for (uint k = 0; k < buffer.size(); ++k) {
-					const array<uint, c> & thisarray = buffer[k];
+					const lazyboost::array<uint, c> & thisarray = buffer[k];
 					for (uint k = 0; k < data.size(); ++k) {
 						externalvector<uint> & thiscolumn = data[k];
 						thiscolumn.append(thisarray[k]);
@@ -323,7 +322,7 @@ public:
 				rs.data.loadACopy(buffer, begin,
 						begin + MAPSIZE > maxsize ? maxsize : begin + MAPSIZE);
 				for (uint k = 0; k < buffer.size(); ++k) {
-					const array<uint, c> & thisarray = buffer[k];
+					const lazyboost::array<uint, c> & thisarray = buffer[k];
 					for (uint k = 0; k < data.size(); ++k) {
 						externalvector<uint> & thiscolumn = data[k];
 						thiscolumn.append(thisarray[k]);

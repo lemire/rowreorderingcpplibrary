@@ -468,7 +468,7 @@ public:
 	void compressBlock(const columntype::const_iterator & begin,
 			const columntype::const_iterator & end, columntype& out,
 			const int L) {
-		typedef std::tr1::unordered_map<uint, uint> mymap;
+		typedef std::unordered_map<uint, uint> mymap;
 		mymap values;
 		for (columntype::const_iterator i = begin; i != end; ++i) {
 			if (values.find(*i) == values.end())
@@ -621,7 +621,6 @@ public:
 		uint numberofruns = 0;
 		for (columntype::const_iterator j(i); j != endpoint;) {
 			const uint val = *j;
-			columntype::const_iterator start(j);
 			++j;
 			for (; j != endpoint; ++j)
 				if (*j != val)
@@ -750,7 +749,6 @@ public:
 		uint numberofruns = 0;
 		for (columntype::const_iterator j(i); j != endpoint;) {
 			const uint val = *j;
-			columntype::const_iterator start(j);
 			++j;
 			for (; j != endpoint; ++j)
 				if (*j != val)

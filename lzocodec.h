@@ -11,9 +11,9 @@
 #include "columnwidecodecs.h"
 
 /// you need to install the LZO library. Should be painless: http://www.oberhumer.com/opensource/lzo/
-#include "lzo/lzoconf.h"
-#include "lzo/lzo1x.h"
-
+//#include "lzo/lzoconf.h"
+//#include "lzo/lzo1x.h"
+#include "minilzo.h"
 
 class lzo : public SimpleCODEC {
 	public:
