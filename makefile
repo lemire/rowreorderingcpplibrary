@@ -13,10 +13,10 @@ all: tods2011
 
 
 minilzo.o : lzocodec.h lzoconf.h  lzodefs.h  minilzo.c  minilzo.h
-	cc  -DNDEBUG -Wall -Wextra -Weffc++ -O3 -c  minilzo.c
+	cc  -DNDEBUG -O3 -c  minilzo.c
 
 tods2011: tods2011.cpp  lzocodec.h flatfile.h columnwidecodecs.h ztimer.h stxxlmemorystores.h externalvector.h columncodecs.h bitpacking.h stxxlrowreordering.h array.h util.h lzocodec.h lzoconf.h  lzodefs.h  minilzo.o  minilzo.h
-	c++  -DNDEBUG -Wall -Wextra -Weffc++ -O3 -o  tods2011 tods2011.cpp   minilzo.o
+	c++  -DNDEBUG  -O3 -o  tods2011 tods2011.cpp   minilzo.o
 
 
 clean:

@@ -324,7 +324,7 @@ class LegacyBinaryFlatFile {
 	  bool nextRow(vector<int> & container) {
 	  	in.read(reinterpret_cast<char *> (& container[0]), sizeof (int) * column);
 	  	for(int k = 0; k<column;++k) endian_swap(container[k]);
-	  	return in;
+	  	return in.good();
 	  }
 	  
 	  enum{MAGIC=0x76,VERSION=1};

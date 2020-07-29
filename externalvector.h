@@ -16,6 +16,7 @@
 #include <fcntl.h>
 #include <stdexcept>
 #include <sys/stat.h>
+#include <unistd.h>
 using namespace std;
 
 typedef unsigned int uint;
@@ -103,7 +104,7 @@ public:
 
 
 
-	void hasMore() {
+	bool hasMore() {
 		return valid;
 	}
 	bool empty() {
