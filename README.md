@@ -1,7 +1,7 @@
 # The Row reordering C++ library -- External memory version 
 ![Ubuntu 20.04 CI (GCC 9)](https://github.com/lemire/rowreorderingcpplibrary/workflows/Ubuntu%2020.04%20CI%20(GCC%209)/badge.svg)
 
-This is a set of row-reordering algorithms and data compression compression schemes implemented in C++. The goal of these algorithms is to maximize the compression ratio of database tables through row reordering.
+This is a set of row-reordering algorithms and data compression compression schemes implemented in C++. The goal of these algorithms is to maximize the compression ratio of database tables through row reordering. 
 
 This library is strictly for researchers with a working knowledge of C++ that are interested in studying our implementation. This code is meant to help you implementing the algorithms from our papers (see references below).
 
@@ -12,6 +12,9 @@ For a simple demo (in Java) of the Vortex order described in the paper, please s
 
 A POSIX C/C++ toolchain (linux, macOS)
 
+# Warning
+
+This is "proof of principle" code. If you ever use this code in production... well, don't.
 
 # References
 
