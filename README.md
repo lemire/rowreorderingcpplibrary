@@ -6,6 +6,8 @@ This is a set of row-reordering algorithms and data compression compression sche
 This library is strictly for researchers with a working knowledge of C++ that are interested in studying our implementation. This code is meant to help you implementing the algorithms from our papers (see references below).
 
 
+You must read the papers: this is not standalone code. It is meant to complement the papers!
+
 For a simple demo (in Java) of the Vortex order described in the paper, please see https://github.com/lemire/SimpleVortex
 
 # Requirements 
@@ -14,7 +16,7 @@ A POSIX C/C++ toolchain (linux, macOS)
 
 # Warning
 
-This is "proof of principle" code. If you ever use this code in production... well, don't.
+This is "proof of principle" code. If you ever use this code in production... well, don't. It is not good C++ code: it is only prototypical.
 
 # References
 
